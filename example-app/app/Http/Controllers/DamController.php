@@ -12,7 +12,10 @@ class DamController extends Controller
      */
     public function index()
     {
-        //
+        $dams = Dam::all();
+        return view('dam.index',compact('dams'));
+
+
     }
 
     /**
@@ -40,7 +43,7 @@ class DamController extends Controller
 
         $dam->save();
 
-        return back();
+        return redirect()->route('dam.index');
     }
 
     /**
