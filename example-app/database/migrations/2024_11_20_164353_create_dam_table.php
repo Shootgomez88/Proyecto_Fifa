@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('year');
             $table->dateTime('created_at')->useCurrent();
             $table->decimal('avg_mark')->default(0);
-            $table->char('name',length:20);
+            $table->char('name',length:50);
             $table->enum('course', ['1','2'])->nullable($value = true);
             $table->dateTime('updated_at')->useCurrent();
         });
