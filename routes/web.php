@@ -1,18 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\JugadorController;
+use App\Http\Controllers\TiendaController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('fifas', App\Http\Controllers\DivisionController::class);
+// Rutas para Equipos
+Route::get('/equipos', [EquipoController::class, 'index']);
+Route::post('/equipos', [EquipoController::class, 'store']);
 
-Route::resource('fifas', App\Http\Controllers\JugadorController::class);
+// Rutas para Paises
+Route::get('/paises', [PaisController::class, 'index']);
 
-Route::resource('fifas', App\Http\Controllers\TiendaController::class);
+// Rutas para Divisiones
+Route::get('/divisiones', [DivisionController::class, 'index']);
 
-Route::resource('fifas', App\Http\Controllers\EquipoController::class);
+// Rutas para Jugadores
+Route::get('/jugadores', [JugadorController::class, 'index']);
 
-Route::resource('fifas', App\Http\Controllers\PaisController::class);
-
+// Rutas para Tiendas
+Route::get('/tiendas', [TiendaController::class, 'index']);
