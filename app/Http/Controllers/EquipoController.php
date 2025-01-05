@@ -11,7 +11,7 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        return Equipo::all();
     }
 
     /**
@@ -27,7 +27,16 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|unique:equipos',
+            'pais' => 'required',
+            'division' => 'nullable',
+            'fundado_en' => 'nullable|integer',
+            'estadio' => 'nullable|string',
+            'titulos' => 'nullable|integer',
+        ]);
+
+        return Equipo::create($request->all());
     }
 
     /**
