@@ -11,7 +11,7 @@ class TiendaController extends Controller
      */
     public function index()
     {
-        //
+        return Tienda::all();
     }
 
     /**
