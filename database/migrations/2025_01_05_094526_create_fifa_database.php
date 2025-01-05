@@ -50,6 +50,7 @@ class CreateFifaDatabase extends Migration
             $table->string('posicion'); // Ej: Delantero, Mediocampista, etc.
             $table->float('valor_mercado', 12, 2)->default(0); // Valor en millones
             $table->timestamps();
+        
 
             $table->foreign('equipo')->references('id')->on('equipos')->onDelete('set null');
             $table->foreign('pais')->references('id')->on('paises')->onDelete('cascade');
