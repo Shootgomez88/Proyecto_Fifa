@@ -11,7 +11,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        return Division::all();
     }
 
     /**
