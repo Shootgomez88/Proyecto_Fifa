@@ -6,27 +6,16 @@ use Illuminate\Http\Request;
 
 class EquipoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return Equipo::all();
+    public function index() {
+        $equipos = Equipo::all();
+        return view('equipos.index', compact('equipos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('equipos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'nombre' => 'required|unique:equipos',
             'pais' => 'required',
@@ -36,38 +25,34 @@ class EquipoController extends Controller
             'titulos' => 'nullable|integer',
         ]);
 
-        return Equipo::create($request->all());
+        Equipo::create($request->all());
+        return redirect()->route('equipos.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function show(Equipo $equipo) {
+        return view('equipos.show', compact('equipo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Equipo $equipo) {
+        return view('equipos.edit', compact('equipo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Equipo $equipo) {
+        $request->validate([
+            'nombre' => 'required',
+            'pais' => 'required',
+            'division' => 'nullable',
+            'fundado_en' => 'nullable|integer',
+            'estadio' => 'nullable|string',
+            'titulos' => 'nullable|integer',
+        ]);
+
+        $equipo->update($request->all());
+        return redirect()->route('equipos.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Equipo $equipo) {
+        $equipo->delete();
+        return redirect()->route('equipos.index');
     }
 }
